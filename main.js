@@ -23,6 +23,14 @@ const shoppingList = document.querySelector('#shopping-list');
 addToListBtn.addEventListener('click', (e) => {
   let inputValue = inputField.value;
   push(shoppingListInDB, inputValue);
-  shoppingList.innerHTML += `<li>${inputValue}</li>`;
-  inputField.value = '';
+  appendItemToShoppingList(inputValue);
+  clearInputField();
 });
+
+function appendItemToShoppingList(itemValue) {
+  shoppingList.innerHTML += `<li>${itemValue}</li>`;
+}
+
+function clearInputField() {
+  inputField.value = '';
+}
