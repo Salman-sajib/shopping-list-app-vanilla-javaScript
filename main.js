@@ -13,7 +13,7 @@ const appSettings = {
 
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
-const moviesInDB = ref(database, 'movies');
+const shoppingListInDB = ref(database, 'shoppingList');
 
 // ====================
 
@@ -23,6 +23,6 @@ const addToListBtn = document.querySelector('#add-button');
 
 addToListBtn.addEventListener('click', (e) => {
   let inputValue = inputField.value;
-  push(moviesInDB, inputValue);
+  push(shoppingListInDB, inputValue);
   console.log(`${inputValue} added to database`);
 });
