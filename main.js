@@ -2,7 +2,6 @@
 import './style.css';
 
 // Add firebase
-
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, push, onValue, remove } from 'firebase/database';
 
@@ -14,15 +13,20 @@ const appSettings = {
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const shoppingListInDB = ref(database, 'shoppingList');
-
 // ====================
 
 // Global variables
 const inputField = document.querySelector('#input-field');
 const addToListBtn = document.querySelector('#add-button');
+const shoppingList = document.querySelector('#shopping-list');
 
 addToListBtn.addEventListener('click', (e) => {
+  let listItem = document.createElement('li');
   let inputValue = inputField.value;
+  let text = document.createTextNode(inputValue);
+  listItem.appendChild(text);
+  shoppingList.appendChild(listItem);
+
   push(shoppingListInDB, inputValue);
-  console.log(`${inputValue} added to database`);
+  inputField.value = '';
 });
