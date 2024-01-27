@@ -1,6 +1,3 @@
-// ========== Import css file ==========
-import './style.css';
-
 // Add firebase
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, push, onValue, remove } from 'firebase/database';
@@ -22,10 +19,24 @@ const shoppingList = document.querySelector('#shopping-list');
 
 addToListBtn.addEventListener('click', (e) => {
   let inputValue = inputField.value;
-  push(shoppingListInDB, inputValue);
-  appendItemToShoppingList(inputValue);
-  clearInputField();
+
+  if (inputValue) {
+    push(shoppingListInDB, inputValue);
+    clearInputField();
+  }
 });
+
+onValue(shoppingListInDB, (snapshot) => {
+  const itemsArray = Object.values(snapshot.val());
+  clearShoppingList();
+  for (let i = 0; i < itemsArray.length; i++) {
+    appendItemToShoppingList(itemsArray[i]);
+  }
+});
+
+function clearShoppingList() {
+  shoppingList.innerHTML = '';
+}
 
 function appendItemToShoppingList(itemValue) {
   shoppingList.innerHTML += `<li>${itemValue}</li>`;
