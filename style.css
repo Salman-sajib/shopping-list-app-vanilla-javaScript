@@ -90,7 +90,7 @@ body {
 }
 
 .fa-cart-arrow-down {
-  color: #57d200;
+  color: #388500;
   font-size: 5rem;
   margin: 0 auto;
 }
@@ -107,13 +107,18 @@ input {
 
 button {
   color: #fdfdfd;
-  background-color: #ac485a;
+  background-color: #264aff;
   border: 0;
   padding: 15px;
   border-radius: 8px;
   font-size: 20px;
   text-align: center;
   cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+
+button:hover {
+  background-color: #0024db;
 }
 
 ul {
