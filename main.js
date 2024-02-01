@@ -31,6 +31,8 @@ onValue(shoppingListInDB, (snapshot) => {
   clearShoppingList();
   for (let i = 0; i < itemsArray.length; i++) {
     let currentItem = itemsArray[i];
+    // let currentItemId = currentItem[0];
+    // let currentItemValue = currentItem[1];
     appendItemToShoppingList(currentItem);
   }
 });
@@ -39,8 +41,18 @@ function clearShoppingList() {
   shoppingList.innerHTML = '';
 }
 
-function appendItemToShoppingList(itemValue) {
-  shoppingList.innerHTML += `<li>${itemValue}</li>`;
+function appendItemToShoppingList(item) {
+  let itemId = item[0];
+  let itemValue = item[1];
+  let newElement = document.createElement('li');
+  newElement.textContent = itemValue;
+
+  newElement.addEventListener('dblclick', function () {
+    let exactLocationofItemInDB = ref(database, `shoppingList/${itemId}`);
+    remove(exactLocationofItemInDB);
+  });
+
+  shoppingList.append(newElement);
 }
 
 function clearInputField() {
