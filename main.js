@@ -31,8 +31,6 @@ onValue(shoppingListInDB, (snapshot) => {
   clearShoppingList();
   for (let i = 0; i < itemsArray.length; i++) {
     let currentItem = itemsArray[i];
-    // let currentItemId = currentItem[0];
-    // let currentItemValue = currentItem[1];
     appendItemToShoppingList(currentItem);
   }
 });
