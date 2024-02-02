@@ -76,6 +76,8 @@ body {
 
   display: grid;
   place-content: center;
+
+  user-select: none;
 }
 
 .container {
@@ -137,9 +139,9 @@ ul > li {
   flex-grow: 1;
   text-align: center;
   cursor: pointer;
+  transition: background-color 200ms ease-in-out;
 }
 
-.remove-info {
-  text-align: center;
-  color: rgb(0, 119, 46);
+ul > li:hover {
+  background-color: #4cb700;
 }

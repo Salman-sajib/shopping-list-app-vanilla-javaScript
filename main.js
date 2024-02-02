@@ -27,11 +27,15 @@ addToListBtn.addEventListener('click', (e) => {
 });
 
 onValue(shoppingListInDB, (snapshot) => {
-  const itemsArray = Object.entries(snapshot.val());
-  clearShoppingList();
-  for (let i = 0; i < itemsArray.length; i++) {
-    let currentItem = itemsArray[i];
-    appendItemToShoppingList(currentItem);
+  if (snapshot.exists()) {
+    const itemsArray = Object.entries(snapshot.val());
+    clearShoppingList();
+    for (let i = 0; i < itemsArray.length; i++) {
+      let currentItem = itemsArray[i];
+      appendItemToShoppingList(currentItem);
+    }
+  } else {
+    shoppingList.innerHTML = 'No item here... yet';
   }
 });
 
